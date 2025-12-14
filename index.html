@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zayron FX - Portfólio Digital</title>
     <style>
-        /* Variáveis CSS para cores e animação */
         :root {
             --cor-fundo-claro: #ece9e6;
             --cor-fundo-escuro: #c4d7e0;
@@ -13,202 +12,128 @@
             --cor-bloco-fundo: rgba(255, 255, 255, 0.7);
             --cor-acento-primaria: #007bff;
             --cor-acento-secundaria: #0056b3;
-            --cor-texto-negrito: #2c3e50; /* Azul escuro para o texto dos números */
-            --cor-subtitulo-cinza: #555555; /* Cinza escuro para o novo subtítulo */
+            --cor-texto-negrito: #2c3e50;
+            --cor-subtitulo-cinza: #555555;
             --glow-borda-galeria: rgba(0, 123, 255, 0.6);
         }
 
-        /* Animação do Fundo */
         @keyframes degradeAnimado {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Animação para o contorno da imagem na galeria */
         @keyframes imageBorderGlow {
             0% { box-shadow: 0 0 0 0px rgba(0,123,255,0.4); }
-            25% { box-shadow: 0 0 0 2px rgba(0,123,255,0.6), 0 0 10px rgba(0,123,255,0.3); }
             50% { box-shadow: 0 0 0 4px rgba(0,123,255,0.8), 0 0 20px rgba(0,123,255,0.5); }
-            75% { box-shadow: 0 0 0 2px rgba(0,123,255,0.6), 0 0 10px rgba(0,123,255,0.3); }
             100% { box-shadow: 0 0 0 0px rgba(0,123,255,0.4); }
         }
 
-        /* Estilo base e fundo animado */
         body {
             font-family: 'Inter', 'Segoe UI', sans-serif;
             margin: 0;
-            padding: 0;
-            color: var(--cor-texto-claro);
             min-height: 100vh;
-
             background: linear-gradient(-45deg, var(--cor-fundo-claro), var(--cor-fundo-escuro));
             background-size: 400% 400%;
             animation: degradeAnimado 15s ease infinite;
-
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Container principal */
         .container {
             width: 90%;
             max-width: 1200px;
-            margin: 50px auto 30px auto;
-            flex-grow: 1;
+            margin: 50px auto;
         }
 
-        /* Bloco Superior (Perfil e Vidro Desfocado) - Reestruturado */
         .header-profile {
             background-color: var(--cor-bloco-fundo);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px 40px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             display: flex;
-            align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
         }
 
         .profile-section {
             display: flex;
-            align-items: center;
             gap: 20px;
-            flex-grow: 1;
         }
 
-        /* Estilo da Imagem de Perfil */
         .profile-pic-wrapper {
             width: 80px;
             height: 80px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
         }
-        
+
         .profile-pic {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-        }
-
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         .profile-info h1 {
-            font-size: 2.2em;
-            margin-bottom: 0px;
+            margin: 0;
             color: var(--cor-acento-secundaria);
         }
 
-        /* Novo Subtítulo Cinza Escuro */
         .profile-category {
-            font-size: 1.1em;
-            color: var(--cor-subtitulo-cinza);
             font-weight: bold;
-            margin: 5px 0; /* Espaço entre o título e as estatísticas */
+            color: var(--cor-subtitulo-cinza);
         }
 
-        /* Estatísticas Azul Escuro */
         .profile-stats {
-            font-size: 0.95em;
-            color: var(--cor-texto-negrito);
             font-weight: bold;
-            margin-top: 0px;
-            opacity: 0.9;
+            color: var(--cor-texto-negrito);
         }
-        
-        /* Botão de Ação (CTA) - Alinhado à direita */
+
         .cta-button {
-            display: inline-block;
-            background-color: var(--cor-acento-primaria);
-            color: white;
+            background: var(--cor-acento-primaria);
+            color: #fff;
             padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            margin-left: auto;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-            white-space: nowrap;
         }
 
-        .cta-button:hover {
-            background-color: var(--cor-acento-secundaria);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
-        }
-
-        /* Galeria (3 imagens por linha) */
         .gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
-        /* Item da Galeria (Miniatura Proporção 3:2 com Glow Animado) */
         .gallery-item {
             position: relative;
-            overflow: hidden;
             padding-top: 66.66%;
-            cursor: pointer;
             border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            background-color: var(--cor-bloco-fundo);
-            
-            animation: imageBorderGlow 4s infinite ease-in-out;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            animation-play-state: paused;
+            overflow: hidden;
+            cursor: pointer;
+            animation: imageBorderGlow 4s infinite;
         }
 
         .gallery-item img {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* Modal (Popup) e Rodapé */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding-top: 60px;
+            inset: 0;
+            background: rgba(0,0,0,.85);
         }
 
         .modal-content {
             margin: auto;
             display: block;
-            width: 90%;
-            max-width: 900px;
+            max-width: 90%;
             max-height: 90vh;
-            object-fit: contain;
-            border-radius: 5px;
         }
 
         .close {
@@ -216,175 +141,72 @@
             top: 20px;
             right: 30px;
             color: #fff;
-            font-size: 45px;
-            font-weight: bold;
-            transition: 0.3s;
+            font-size: 40px;
             cursor: pointer;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
-        }
-
-        .close:hover,
-        .close:focus {
-            color: var(--cor-acento-primaria);
         }
 
         footer {
-            width: 100%;
             text-align: center;
-            padding: 20px 0;
-            margin-top: auto;
-            font-size: 0.9em;
-            opacity: 0.8;
-            color: var(--cor-texto-claro);
-        }
-
-        /* Responsividade */
-        @media (max-width: 992px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .header-profile {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-            .profile-section {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-            }
-            .cta-button {
-                margin-left: 0;
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            .profile-info h1 {
-                font-size: 2em;
-            }
-            .profile-pic-wrapper {
-                width: 70px;
-                height: 70px;
-            }
-            .header-profile {
-                padding: 20px 15px;
-            }
-            .profile-category, .profile-stats {
-                font-size: 0.9em;
-            }
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="header-profile">
-            <div class="profile-section">
-                <div class="profile-pic-wrapper">
-                    <img class="profile-pic" src="https://xatimg.com/image/e532yn3eazY0.png" alt="Foto de Perfil Zayron FX">
-                </div>
-                
-                <div class="profile-info">
-                    <h1>Zayron FX</h1>
-                    <p class="profile-category">Fundos, pcbacks, pstyle, logo & Xatspace</p>
-                    <p class="profile-stats">+100 Fundos +50 Pcbacks +25 Xatspace</p>
-                </div>
-            </div>
-            
-            <a href="https://xat.com/mixhits" target="_blank" class="cta-button">Fale Comigo</a>
-        </header>
-
-        <main class="gallery">
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/2PT26NnRAGBr.png')">
-                <img src="https://xatimg.com/image/2PT26NnRAGBr.png" alt="Galeria Item 01">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/74MlNzJddR3y.png')">
-                <img src="https://xatimg.com/image/74MlNzJddR3y.png" alt="Galeria Item 02">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/URiIuycS6v4o.png')">
-                <img src="https://xatimg.com/image/URiIuycS6v4o.png" alt="Galeria Item 03">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/iezWtIXyPYie.png')">
-                <img src="https://xatimg.com/image/iezWtIXyPYie.png" alt="Galeria Item 04">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/OSq338ggOjBY.png')">
-                <img src="https://xatimg.com/image/OSq338ggOjBY.png" alt="Galeria Item 05">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/fZ1IyQc8kj7M.png')">
-                <img src="https://xatimg.com/image/fZ1IyQc8kj7M.png" alt="Galeria Item 06">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/kAyEpeRTgXl1.png')">
-                <img src="https://xatimg.com/image/kAyEpeRTgXl1.png" alt="Galeria Item 07">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/yPdPyGwWED6K.png')">
-                <img src="https://xatimg.com/image/yPdPyGwWED6K.png" alt="Galeria Item 08">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/euNPEsV3tXn0.png')">
-                <img src="https://xatimg.com/image/euNPEsV3tXn0.png" alt="Galeria Item 09">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/Vhp2B1hazDX4.png')">
-                <img src="https://xatimg.com/image/Vhp2B1hazDX4.png" alt="Galeria Item 10">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/hAQdroSBg3nA.png')">
-                <img src="https://xatimg.com/image/hAQdroSBg3nA.png" alt="Galeria Item 11">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/9uJcPyQn68Dv.png')">
-                <img src="https://xatimg.com/image/9uJcPyQn68Dv.png" alt="Galeria Item 12">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/TgZO2PWLhmUx.png')">
-                <img src="https://xatimg.com/image/TgZO2PWLhmUx.png" alt="Galeria Item 13">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/RF614VMEmgry.png')">
-                <img src="https://xatimg.com/image/RF614VMEmgry.png" alt="Galeria Item 14">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/MfzB7E6HhD40.png')">
-                <img src="https://xatimg.com/image/MfzB7E6HhD40.png" alt="Galeria Item 15">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/t9zqRckHEMJJ.png')">
-                <img src="https://xatimg.com/image/t9zqRckHEMJJ.png" alt="Galeria Item 16">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/TOEDpszAsmO8.png')">
-                <img src="https://xatimg.com/image/TOEDpszAsmO8.png" alt="Galeria Item 17">
-            </div>
-            <div class="gallery-item" onclick="openModal('https://xatimg.com/image/uYOfAV6ukkVV.png')">
-                <img src="https://xatimg.com/image/uYOfAV6ukkVV.png" alt="Galeria Item 18">
-            </div>
-        </main>
+<div class="container">
+<header class="header-profile">
+    <div class="profile-section">
+        <div class="profile-pic-wrapper">
+            <img class="profile-pic" src="https://xatimg.com/image/e532yn3eazY0.png">
+        </div>
+        <div class="profile-info">
+            <h1>Zayron FX</h1>
+            <p class="profile-category">Fundos, pcbacks, pstyle, logo & Xatspace</p>
+            <p class="profile-stats">+100 Fundos +50 Pcbacks +25 Xatspace</p>
+        </div>
     </div>
+    <a href="https://xat.com/mixhits" class="cta-button">Fale Comigo</a>
+</header>
 
-    <div id="myModal" class="modal" onclick="closeModal(event)">
-        <span class="close" onclick="closeModal(event, true)">&times;</span>
-        <img class="modal-content" id="img01">
-    </div>
+<main class="gallery">
 
-    <footer>
-        Feito com &#x2764; Zayron - 2025
-    </footer>
+<!-- NOVAS IMAGENS PRIMEIRO -->
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/FQ4Nk7sP7Oga.png')"><img src="https://xatimg.com/image/FQ4Nk7sP7Oga.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/PhpY4O6zakHO.png')"><img src="https://xatimg.com/image/PhpY4O6zakHO.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/qzVR9crZJGpJ.png')"><img src="https://xatimg.com/image/qzVR9crZJGpJ.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/JMqrEkRv3rDN.png')"><img src="https://xatimg.com/image/JMqrEkRv3rDN.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/ggssvZIf6LaE.png')"><img src="https://xatimg.com/image/ggssvZIf6LaE.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/VMT7Hqdf9IL0.png')"><img src="https://xatimg.com/image/VMT7Hqdf9IL0.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/wFB7BMuc1rtd.png')"><img src="https://xatimg.com/image/wFB7BMuc1rtd.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/LaMVD4nU9tvR.png')"><img src="https://xatimg.com/image/LaMVD4nU9tvR.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/A2fb4gInGj0B.png')"><img src="https://xatimg.com/image/A2fb4gInGj0B.png"></div>
 
-    <script>
-        // Função para abrir o modal
-        function openModal(imgSrc) {
-            const modal = document.getElementById("myModal");
-            const modalImg = document.getElementById("img01");
+<!-- IMAGENS ANTIGAS -->
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/2PT26NnRAGBr.png')"><img src="https://xatimg.com/image/2PT26NnRAGBr.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/74MlNzJddR3y.png')"><img src="https://xatimg.com/image/74MlNzJddR3y.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/URiIuycS6v4o.png')"><img src="https://xatimg.com/image/URiIuycS6v4o.png"></div>
+<div class="gallery-item" onclick="openModal('https://xatimg.com/image/iezWtIXyPYie.png')"><img src="https://xatimg.com/image/iezWtIXyPYie.png"></div>
 
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
-        }
+</main>
+</div>
 
-        // Função para fechar o modal
-        function closeModal(event, forceClose = false) {
-            const modal = document.getElementById("myModal");
-            // Fechar se clicou no X (forceClose = true) ou se clicou fora da imagem
-            if (forceClose || event.target === modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+<div id="myModal" class="modal" onclick="closeModal(event)">
+    <span class="close" onclick="closeModal(event,true)">&times;</span>
+    <img class="modal-content" id="img01">
+</div>
+
+<footer>Feito com ❤ Zayron - 2025</footer>
+
+<script>
+function openModal(src){
+    document.getElementById("myModal").style.display="block";
+    document.getElementById("img01").src=src;
+}
+function closeModal(e,f){
+    if(f||e.target.id==="myModal")
+        document.getElementById("myModal").style.display="none";
+}
+</script>
 
 </body>
 </html>
